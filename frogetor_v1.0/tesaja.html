@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu with Sub-Menus</title>
+    <style>
+        /* Gaya untuk menyembunyikan sub-menu secara default */
+        .submenu, .sub-submenu {
+            display: none;
+        }
+        .menu {
+            cursor: pointer;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li class="menu" onclick="toggleMenu('submenu')">Document
+            <ul id="submenu" class="submenu">
+                <li class="menu" onclick="toggleMenu('sub-submenu')">Honor
+                    <ul id="sub-submenu" class="sub-submenu">
+                        <li>Absensi</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+    <script>
+        // Fungsi untuk toggle (menyembunyikan/menampilkan) menu dan sub-menu
+        function toggleMenu(menuId) {
+            var menu = document.getElementById(menuId);
+            if (menu.style.display === 'none' || menu.style.display === '') {
+                menu.style.display = 'block';
+            } else {
+                menu.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
