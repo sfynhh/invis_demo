@@ -84,7 +84,9 @@ phpunit
 #-------------------------
 # Composer
 #-------------------------
-vendor/
+# vendor/
+
+app/Config/Database.php
 
 #-------------------------
 # IDE / Development Files
