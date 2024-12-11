@@ -137,7 +137,20 @@
                                 <?php
                                        }
                                    }
-                                    echo form_open('Signin', 'class="form-border"') ;
+
+                                   if(isset($notAdmin)) {
+                                    if (!$notAdmin) { ?>
+
+                                <div class="example-alert" style="margin-bottom: 10px;">
+                                    <div class="alert alert-danger alert-icon alert-dismissible">
+                                        <em class="icon ni ni-cross-circle"></em> Mohon maaf anda bukan Admin<button class="close" data-bs-dismiss="alert"></button>
+                                    </div>
+                                </div>
+                                <?php
+                                       }
+                                   }                                                                                        
+
+                                    echo form_open('SigninProcess', 'class="form-border"') ;
                                 
                                 ?>
                                 <div class="form-group">

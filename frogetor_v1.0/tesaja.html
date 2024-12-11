@@ -1,43 +1,46 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu with Sub-Menus</title>
+    <title>Scan QR Code - Tambah Stok Barang</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://unpkg.com/html5-qrcode"></script>
     <style>
-        /* Gaya untuk menyembunyikan sub-menu secara default */
-        .submenu, .sub-submenu {
-            display: none;
-        }
-        .menu {
-            cursor: pointer;
-            font-weight: bold;
-        }
+        #qr-reader { width: 100%; max-width: 600px; margin: auto; }
     </style>
 </head>
 <body>
-    <ul>
-        <li class="menu" onclick="toggleMenu('submenu')">Document
-            <ul id="submenu" class="submenu">
-                <li class="menu" onclick="toggleMenu('sub-submenu')">Honor
-                    <ul id="sub-submenu" class="sub-submenu">
-                        <li>Absensi</li>
-                    </ul>
-                </li>
-            </ul>
-        </li>
-    </ul>
+    <div id="qr-reader" style="width:500px"></div>
+    <div id="qr-reader-results"></div>
 
-    <script>
-        // Fungsi untuk toggle (menyembunyikan/menampilkan) menu dan sub-menu
-        function toggleMenu(menuId) {
-            var menu = document.getElementById(menuId);
-            if (menu.style.display === 'none' || menu.style.display === '') {
-                menu.style.display = 'block';
-            } else {
-                menu.style.display = 'none';
+  <script>
+    function docReady(fn) {
+        // see if DOM is already available
+        if (document.readyState === "complete"
+            || document.readyState === "interactive") {
+            // call on next available tick
+            setTimeout(fn, 1);
+        } else {
+            document.addEventListener("DOMContentLoaded", fn);
+        }
+    }
+
+    docReady(function () {
+        var resultContainer = document.getElementById('qr-reader-results');
+        var lastResult, countResults = 0;
+        function onScanSuccess(decodedText, decodedResult) {
+            if (decodedText !== lastResult) {
+                ++countResults;
+                lastResult = decodedText;
+                // Handle on success condition with the decoded message.
+                console.log(`Scan result ${decodedText}`, decodedResult);
             }
         }
-    </script>
+
+        var html5QrcodeScanner = new Html5QrcodeScanner(
+            "qr-reader", { fps: 10, qrbox:  { width: 250, height: 250 } });
+        html5QrcodeScanner.render(onScanSuccess);
+    });
+</script>
 </body>
 </html>

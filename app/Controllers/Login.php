@@ -40,12 +40,14 @@ class Login extends BaseController
                 return redirect()->to(base_url(''));
         }
         
-        echo view('partials/login/index');
+        echo view('partials/Login/index');
             
         
     }
 
     public function processLogin()  {
+        // echo "eeror";
+        // die();
         $this->validation->setRules([
 
             'username' => [
@@ -134,9 +136,6 @@ class Login extends BaseController
             }
 
 
-
-           
-
             if ($position[0]->stucturalpositionname==null){
                 $jumlahrole=1;
                  if ($position[0]->worklocationparent==null){
@@ -158,7 +157,7 @@ class Login extends BaseController
                 'name_emp'=>$profile->fullname,
                 'nik_emp'=>$profile->identitynumber,
                 'photo_url'=>$profile->photo,
-                'worklocation_name'=>$position[0]->worklocationname,
+                'worklocationname'=>$position[0]->worklocationname,
                 'unit_emp'=>$unitEmp,
                 'email'=>$email,
                 'position'=>'Pegawai',
@@ -231,7 +230,7 @@ class Login extends BaseController
 
 
              $getDataPgw=$this->LM->getDataEmpByNip($profile->numberid);
-             $checkDataAdmin=$this->LM->getDataAdminByIdEmp($getDataPgw['id']);
+             $checkDataAdmin=$this->LM->getDataAdminByIdEmp($getDataPgw['id_emp']);
 
                 if ($position[0]->employmentstatusname!='MAGANG' || isset($getDataPgw['unit_emp'])){
                     $this->LM->deleteRole($profile->numberid);
@@ -241,23 +240,31 @@ class Login extends BaseController
 
              $dataEmp['unit_emp']=$position[0]->employmentstatusname!='MAGANG' ?$dataRole[0]['unit_role_name']:$getDataPgw['unit_emp'];
              $dataEmp['id_role_tetap']=$dataRole[0]['id_role_tetap'];
-             if(count($checkDataAdmin)==0){
-                $dataEmp['type'] = $dataRole[0]['type_role'];
-             }else{
-                $dataEmp['type'] =  $checkDataAdmin[0]['type'];
-             }
-
-             if ($dataEmp['type'] == 'superadmin'){
-                    $dataEmp['token']=$getToken->token;
-             }
+           
+        
              
-             if (count($checkDataAdmin)!=0){
-              $dataEmp['id']=$checkDataAdmin[0]['id'];
-             }
+
+            //  if ($dataEmp['type'] == 'superadmin'){
+            //         $dataEmp['token']=$getToken->token;
+            //  }
+             
+           
              $dataEmp['status_pgw']=$position[0]->employmentstatusname;
-             session()->set($dataEmp);
-            //print_r(session()->get());
-            return redirect()->to(base_url(''));
+
+             if(count($checkDataAdmin)==0){
+                
+                $data['notAdmin'] = false;
+                echo view('partials/login/index', $data);
+                // echo "sukses";
+             }else{
+                $dataEmp['id']=$checkDataAdmin[0]['id_users_admin'];
+                   
+               $dataEmp['type'] =  $checkDataAdmin[0]['type'];
+                session()->set($dataEmp);
+                //print_r(session()->get());
+                return redirect()->to(base_url(''));
+             }
+            
         } else {
 
             $data['validation'] = $this->validation;
@@ -266,6 +273,7 @@ class Login extends BaseController
             $data['cekpasword'] = $cekpasword;
             $data['checkTUJ'] = $checkTUJ;
             //print_r($data['validation']->getErrors());
+            // echo "sukses";
               echo view('partials/login/index', $data);
         }
     }
@@ -423,7 +431,7 @@ class Login extends BaseController
 
                  $getDataPgw=$this->LM->getDataEmpByNip($position[0]->employeeidentifynumber);
 
-                 $checkDataAdmin=$this->LM->getDataAdminByIdEmp($getDataPgw['id']);
+                 $checkDataAdmin=$this->LM->getDataAdminByIdEmp($getDataPgw['id_emp']);
 
                 //  $this->LM->deleteRole($position[0]->employeeidentifynumber);
                 //  $this->LM->addRole($dataRole);
@@ -437,7 +445,7 @@ class Login extends BaseController
                  }
                  
                  if (count($checkDataAdmin)!=0){
-                  $dataEmp['id']=$checkDataAdmin[0]['id'];
+                  $dataEmp['id']=$checkDataAdmin[0]['id_users_admin'];
                  }
                  $dataEmp['status_pgw']=$position[0]->employmentstatusname;
                  session()->set($dataEmp);

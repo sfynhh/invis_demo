@@ -8946,3 +8946,8 @@ span.badge-warning .pointer:hover {
 .none-view {
   display: none;
 }
+
+.search-custom {
+  background-color: transparent;
+  border-radius: 50px;
+}

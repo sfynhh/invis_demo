@@ -130,9 +130,9 @@ class LoginModel extends Model
        
          
         $sql ="SELECT Admin_name as id_role_tetap, type as type_role from users_admin join employe_master on users_admin.Admin_name=employe_master.id_emp
-               where nip_emp=?";
+               where nip_emp = ?";
         
-        return $query = $this->db->query($sql, [$id, $id])->getResultArray();
+        return $query = $this->db->query($sql, [$id])->getResultArray();
 
         
     }
