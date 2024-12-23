@@ -156,7 +156,7 @@
             var formProcess=` <form id="frmprocess">
                                     ${dataCartform}
                                      <div class="form-group">
-                                        <label for="selectProcess">Chosee PIC</label>
+                                        <label for="selectProcess">Nama Peminjam</label>
                                         <select class="select2 form-control mb-3 custom-select" style="width: 100%; height:36px;" name="pic" id="selectProcess">
                                             <option value="">-- pilih PIC --</option>
                                         </select>
