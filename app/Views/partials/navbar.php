@@ -105,7 +105,7 @@
                 <a href="index.html" class="logo">
 
                     <span>
-                        <img src="<?php echo base_url('') ?>assets_login/images/logo_darsy_putih.png" alt="logo-large"
+                        <img src="<?php echo base_url('') ?>assets_login/images/logo_invis.png" alt="logo-large"
                             class="logo-lg">
                     </span>
                 </a>
