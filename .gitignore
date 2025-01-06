@@ -87,6 +87,7 @@ tests/coverage*
 # vendor/
 
 app/Config/Database.php
+public/assets/img/asset/
 
 #-------------------------
 # IDE / Development Files
