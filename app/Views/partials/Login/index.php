@@ -22,7 +22,7 @@
 
     <style>
     .bg-login {
-        background-image: url("<?php echo base_url('') ?>/assets_login/images/bg/Gedung_Kampus_TUJ.webp");
+        background-image: url("<?php echo base_url('') ?>/assets_login/images/bg/bg_demo.webp");
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;

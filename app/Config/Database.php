@@ -27,9 +27,9 @@ class Database extends Config
     public array $default = [
         'DSN'          => '',
         'hostname'     => '153.92.15.25',
-        'username'     => 'u851457760_inven_user',
+        'username'     => 'u851457760_invis_user',
         'password'     => 'Masuk0987!',
-        'database'     => 'u851457760_inventaris_sys',
+        'database'     => 'u851457760_invis_demo',
         'DBDriver'     => 'MySQLi',
         'DBPrefix'     => '',
         'pConnect'     => false,
@@ -50,30 +50,6 @@ class Database extends Config
         ],
     ];
 
-    public array $dbSiak = [
-        'DSN'          => '',
-        'hostname'     => '45.143.81.144',
-        'username'     => 'u1249656_superuser',
-        'password'     => 'kudalembur@2023',
-        'database'     => 'u1249656_silog',
-        // 'hostname'     => 'localhost',
-        // 'username'     => 'db_dti_user',
-        // 'password'     => 'WebDTI2023!?',
-        // 'database'     => 'db_silo',
-        'DBDriver'     => 'MySQLi',
-        'DBPrefix'     => '',
-        'pConnect'     => false,
-        'DBDebug'      => true,
-        'charset'      => 'utf8',
-        'DBCollat'     => 'utf8_general_ci',
-        'swapPre'      => '',
-        'encrypt'      => false,
-        'compress'     => false,
-        'strictOn'     => false,
-        'failover'     => [],
-        'port'         => 3306,
-        'numberNative' => false,
-    ];
 
     //    /**
     //     * Sample database connection for SQLite3.

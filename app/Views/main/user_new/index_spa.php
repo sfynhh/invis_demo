@@ -151,7 +151,7 @@ function calldata() {
         minimumInputLength: 3,
 
     }).on('select2:open', function(e) {
-        $('.select2-search__field').attr('placeholder', 'Search Name');
+        $('.select2-search__field').attr('placeholder', 'Typing "Mega" it will show');
     });
 
     $('#dataDoc').DataTable({

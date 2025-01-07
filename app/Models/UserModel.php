@@ -23,7 +23,7 @@ class UserModel extends Model
  
         $this->dt = $this->db->table($this->table);
 
-        $this->dbi = \Config\Database::connect('dbSiak');
+       
 
  
         // $this->tbi = $this->db->table('student');
@@ -108,11 +108,9 @@ class UserModel extends Model
     public function getNipNim($s)
     {
   
-        $sql ="SELECT * FROM (SELECT s.numberid as nip_nim ,s.fullname as fullname, 'MHW' As status, s.phone, s.studyprogram as unit FROM student s  where s.permission_loan =1 and (s.id_student  like ? or  s.fullname  like ? )
-        UNION 
-        SELECT em.nip_emp, em.name_emp, 'EMP', em.no_tlp, em.unit_emp  FROM employe_master em where em.nip_emp  like ? or  em.name_emp  like ? ) as DEM order by DEM.fullname limit 15";
+        $sql =" SELECT em.nip_emp as nip_nim, em.name_emp as fullname, 'EMP'  As status, em.no_tlp as phone, em.unit_emp as unit  FROM employe_master em where em.nip_emp  like ? or  em.name_emp  like ?  limit 15";
           
-          return $query = $this->dbi->query($sql, ["%".$s."%","%".$s."%","%".$s."%","%".$s."%"])->getResult();
+          return $query = $this->db->query($sql, ["%".$s."%","%".$s."%"])->getResult();
       }
 
     public function createUser($data)
