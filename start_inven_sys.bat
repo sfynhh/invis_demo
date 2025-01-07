@@ -6,7 +6,7 @@ timeout /t 5 /nobreak >nul
 
 rem Menjalankan php spark serve di CodeIgniter 4
 
-cd C:\xampp_8_1\htdocs\inventaris_system
+cd C:\xampp_8_1\htdocs\inventaris_system_demo
 start /B php spark serve
 
 rem Menunggu beberapa detik untuk memastikan server telah berjalan
